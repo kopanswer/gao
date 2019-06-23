@@ -28,12 +28,16 @@ class Utility(object):
             否最终失败，返回空值 ""
         """
         while retry > 0:
-            response = requests.get(url, timeout=timeout)
-            if response.status_code == 200:
-                return response.text
-            retry -= 1
             interval = random.uniform(1, 10)
-            time.sleep(interval)
+            try:
+                response = requests.get(url, headers={'Connection': 'close'}, timeout=timeout)
+                if response.status_code == 200:
+                    return response.text
+                retry -= 1
+                time.sleep(interval)
+            except Exception as e:
+                time.sleep(interval)
+                print ("url:%s, fetch err:%s") % (url, string(e))
         return ""
 
     def parse_html(self, html):
