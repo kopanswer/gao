@@ -37,6 +37,7 @@ DEBUG = True
 class DBRouter(object):
     tables = (
         'offcn',
+        'offcn_detail',
         'test'
         )
 
