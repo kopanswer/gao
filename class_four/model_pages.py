@@ -1,19 +1,12 @@
 # --*-- coding:utf8 --*--
+import os
+import django
+os.environ['DJANGO_SETTINGS_MODULE'] = 'app_data.settings'
+django.setup()
+from app_data.models.entity import Pages
 
-from app_data.models.entity import Offcn
-
-class OffcnContent(object):
+class PagesModel(object):
     def __init__(self):
-        """
-            record["year"] = year
-            record["bureau"] = trs[i].xpath('.//td')[0].xpath('.//a')[0].text
-            record["office"] = trs[i].xpath('.//td')[1].text
-            record["jobname"] = trs[i].xpath('.//td')[2].xpath('.//a')[0].text
-            record["jobcode"] = trs[i].xpath('.//td')[3].text
-            record["candidates"] = trs[i].xpath('.//td')[4].text
-            record["applicants"] = trs[i].xpath('.//td')[5].text
-            record["qualifieds"] = trs[i].xpath('.//td')[6].text
-        """
         self.year = ""
         self.bureau = ""
         self.office = ""
@@ -24,7 +17,7 @@ class OffcnContent(object):
         self.qualifieds = ""
 
     def save(self):
-        Offcn.objects.update_or_create(
+        Pages.objects.update_or_create(
             #   过滤条件，是否等于
             year = self.year,
             bureau = self.bureau,
@@ -38,3 +31,4 @@ class OffcnContent(object):
             )
         )
 
+pages_model = PagesModel()

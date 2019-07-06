@@ -1,6 +1,9 @@
 # --*-- coding:utf8 --*--
 
-# 背熟
+"""
+    背熟练
+"""
+
 
 import django
 import os
@@ -28,6 +31,6 @@ Test.objects.update_or_create(
     id=2,
     defaults=dict(
         name="power",
-        extra=123
+        extra=123,
     )
 )
