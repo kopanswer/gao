@@ -52,4 +52,10 @@ class Utility(object):
         dom = etree.HTML(html)
         return dom
 
+    def generate_md5(self, key):
+        import hashlib
+        hm = hashlib.md5()
+        hm.update(key)
+        return hm.hexdigest()
+
 util_func = Utility()

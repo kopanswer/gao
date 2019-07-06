@@ -1,8 +1,8 @@
 #  --*-- coding:utf8 --*--
 
 import re
-from class_four.model_years import YearsModel
-import class_four.setting
+from class_five.model_years import YearsModel
+import class_five.setting
 from exercise.class_four_exercise.utility import util_func
 
 class ProcessYears(object):
@@ -11,8 +11,8 @@ class ProcessYears(object):
 
     def fetch_years(self):
         years = []
-        for year in range(class_four.setting.minyear, class_four.setting.maxyear+1):
-            year_url = class_four.setting.year_url.format(year=year)
+        for year in range(class_five.setting.minyear, class_five.setting.maxyear+1):
+            year_url = class_five.setting.year_url.format(year=year)
             year_htm = util_func.fetch_html(year_url)
             year_dom = util_func.parse_html(year_htm)
             if not year_dom:
@@ -34,10 +34,8 @@ class ProcessYears(object):
     def show_years(self, year_model):
         print "第", year_model.year, "年有", year_model.pages, "页", year_model.items, "种职位\n"
 
-    def process_years(self):
-        self.fetch_years()
+    def process(self):
+        return self.fetch_years()
 
 process_years = ProcessYears()
-
-
 
